@@ -5,25 +5,25 @@
 
 
 import streamlit as st
-import requests  # To send requests to the Flask API
+import requests  
 
 st.title("Document Query System")
 
-# Input field for the user's query
+
 user_input = st.text_input("Enter your query:")
 
-# On search button press
+
 if st.button("Search"):
     if user_input:
-        # Send query to the Flask API
+        
         response = requests.post(
-            'http://127.0.0.1:5000/query',  # URL for your Flask API
+            'http://127.0.0.1:5000/query', 
             json={'query': user_input}
         )
         
-        # Check if the request was successful
+  
         if response.status_code == 200:
-            results = response.json()  # Get the JSON response from Flask
+            results = response.json()  
             st.subheader("Results:")
             for i, result in enumerate(results):
                 st.write(f"{i + 1}. {result}")
